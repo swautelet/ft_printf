@@ -22,7 +22,7 @@ fclean : clean
 	$(CC) -c $(CFLAGS) $?
 
 save : 
-	git add $(FILES) Makefile
+	git add $(FILES) $(PROG) $(HEADER) Makefile
 	git commit -m autosave
 	git push 
 

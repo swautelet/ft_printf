@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/11/26 20:36:07 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/11/29 18:46:08 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,26 +120,33 @@ int	ft_printf(const char *str, ...)
 		else if(*str == '%' && *(str + 1) == 'd')
 		{
 			write_itoa((size_t)va_arg(arg, int), "0123456789");
+			str++;
 		}
 		else if(*str == '%' && *(str + 1) == 'i')
 		{
 			write_itoa((size_t)va_arg(arg, int), "0123456789");
-
+			str++;
 		}
 		else if(*str == '%' && *(str + 1) == 'u')
 		{
 			write_itoa((size_t)va_arg(arg, int), "0123456789");
+			str++;
 		}
 		else if(*str == '%' && *(str + 1) == 'x')
 		{
 			write_itoa((size_t)va_arg(arg, int), "0123456789abcdef");
+			str++;
 		}
 		else if(*str == '%' && *(str + 1) == 'X')
 		{
 			write_itoa((size_t)va_arg(arg, int), "0123456789ABCDEF");
+			str++;
 		}
 		else if(*str == '%' && *(str + 1) == '%')
+		{
 			write(1, "%", 1);
+			str++;
+		}
 		else
 			write (1, str, 1);
 		str++;
