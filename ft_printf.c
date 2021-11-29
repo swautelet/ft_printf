@@ -6,7 +6,7 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/11/29 18:46:08 by swautele         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:59:43 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ssize_t	ft_strlen(char *str)
 	return (i);
 }
 
-void ft_itoa_pointer(long int pin, char *tab)
+void	ft_itoa_pointer(long int pin, char *tab)
 {
 	int	index[9];
 	int	i;
@@ -59,16 +59,13 @@ int	ft_len(size_t n, size_t b)
 	return (l);
 }
 
-void	write_itoa(size_t n, char *str)
+void	write_itoa(size_t n, char *str, size_t b)
 {
-	size_t	b;
-	int		i;
-
-	b = ft_strlen(str);
-
-	int tab[ft_len(n, b)];
+	int	i;
+	int	*tab;
 
 	i = 0;
+	tab = malloc(sizeof(int) * ft_len(n, b));
 	if (n < 0)
 	{
 		n = -n;
@@ -80,10 +77,11 @@ void	write_itoa(size_t n, char *str)
 		n = n / b;
 		i++;
 	}
-	while (i-- >= 0)
+	while (--i >= 0)
 	{
 		write(1, &str[tab[i]], 1);
 	}
+	free (tab);
 }
 
 int	ft_printf(const char *str, ...)
@@ -110,39 +108,39 @@ int	ft_printf(const char *str, ...)
 			write(1, string, ft_strlen(string));
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == 'p')
+		else if (*str == '%' && *(str + 1) == 'p')
 		{
 			pin = (long int)va_arg(arg, void *);
 			write(1, "0x", 2);
 			ft_itoa_pointer(pin, "0123456789abcdef");
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == 'd')
+		else if (*str == '%' && *(str + 1) == 'd')
 		{
-			write_itoa((size_t)va_arg(arg, int), "0123456789");
+			write_itoa((size_t)va_arg(arg, int), "0123456789", 10);
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == 'i')
+		else if (*str == '%' && *(str + 1) == 'i')
 		{
-			write_itoa((size_t)va_arg(arg, int), "0123456789");
+			write_itoa((size_t)va_arg(arg, int), "0123456789", 10);
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == 'u')
+		else if (*str == '%' && *(str + 1) == 'u')
 		{
-			write_itoa((size_t)va_arg(arg, int), "0123456789");
+			write_itoa((size_t)va_arg(arg, int), "0123456789", 10);
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == 'x')
+		else if (*str == '%' && *(str + 1) == 'x')
 		{
-			write_itoa((size_t)va_arg(arg, int), "0123456789abcdef");
+			write_itoa((size_t)va_arg(arg, int), "0123456789abcdef", 16);
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == 'X')
+		else if (*str == '%' && *(str + 1) == 'X')
 		{
-			write_itoa((size_t)va_arg(arg, int), "0123456789ABCDEF");
+			write_itoa((size_t)va_arg(arg, int), "0123456789ABCDEF", 16);
 			str++;
 		}
-		else if(*str == '%' && *(str + 1) == '%')
+		else if (*str == '%' && *(str + 1) == '%')
 		{
 			write(1, "%", 1);
 			str++;
