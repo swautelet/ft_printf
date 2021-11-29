@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tester.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:53:31 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/11/26 20:32:32 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/11/29 19:08:52 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(void)
 {
-//	char *test = "test";
 	ft_printf("%d\n", 10);
 	printf("%d\n", 10);
 }
