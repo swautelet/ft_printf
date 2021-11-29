@@ -6,14 +6,17 @@
 /*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:53:31 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/11/29 19:08:52 by swautele         ###   ########.fr       */
+/*   Updated: 2021/11/29 20:22:23 by swautele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int main(void)
 {
-	ft_printf("%d\n", 10);
-	printf("%d\n", 10);
+	//ft_printf("f%i\n", 100);
+	printf("%d\n", ft_printf(" %d ", 1));
+	//printf("%i\n", 100);
+	printf("%d\n", printf(" %", 1));
+	return 0;
 }

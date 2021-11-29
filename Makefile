@@ -8,7 +8,7 @@ HEADER = ft_printf.h
 PROG = tester.c
 
 all :$(OBJECT)
-	$(AR) %?
+	$(AR) $(NAME) $?
 
 re : fclean all
 
