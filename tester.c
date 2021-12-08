@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 19:53:31 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/08 11:18:22 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/08 11:25:59 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main(void)
 {
-	printf("%d	\n", ft_printf(" %d ", 1));
-	printf("%d	\n", printf(" %d", 1));
+	printf("	%d\n", ft_printf(" %d", 1));
+	printf("	%d\n", printf(" %d", 1));
 }

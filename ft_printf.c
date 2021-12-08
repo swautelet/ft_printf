@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/08 11:21:24 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/08 11:24:56 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int	ft_printf(const char *str, ...)
 	va_end(arg);
 	result = count->count;
 	free (count);
-	return (0);
+	return (result);
 }
