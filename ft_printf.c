@@ -3,131 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swautele <swautele@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/11/29 20:05:57 by swautele         ###   ########.fr       */
+/*   Updated: 2021/12/08 11:14:13 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-ssize_t	ft_strlen(char *str)
-{
-	ssize_t	i;
-
-	i = 0;
-	while (*str)
-	{
-		i++;
-		str++;
-	}
-	return (i);
-}
-
-const char	*ft_pt(long int pin, char *tab, const char *str)
-{
-	int	index[9];
-	int	i;
-
-	write(1, "0x", 2);
-	i = 0;
-	while (i < 9)
-	{
-		index[i] = pin % 16;
-		pin = pin / 16;
-		i++;
-	}
-	while (i > 0)
-	{
-		i--;
-		write(1, &tab[index[i]], 1);
-	}
-	return (++str);
-}
-
-int	ft_len(size_t n, size_t b)
-{
-	int	l;
-
-	l = 1;
-	while (n >= b)
-	{
-		l++;
-		n = n / b;
-	}
-	return (l);
-}
-
-const char	*witoa(ssize_t n, char *str, size_t b, const char *or)
-{
-	int	i;
-	int	*tab;
-
-	i = 0;
-	if (n < 0)
-	{
-		n = -n;
-		write(1, "-", 1);
-	}
-	tab = malloc(sizeof(int) * ft_len(n, b));
-	if (n == 0)
-		write (1, str, 1);
-	while (n > 0)
-	{
-		tab[i] = n % b;
-		n = n / b;
-		i++;
-	}
-	while (--i >= 0)
-	{
-		write(1, &str[tab[i]], 1);
-	}
-	free (tab);
-	return (++or);
-}
-
-const char	*ft_write(char c, const char *str)
-{
-	write (1, &c, 1);
-	return (++str);
-}
-
-const char	*ft_write_string(char *c, const char *str)
-{
-	write(1, c, ft_strlen(c));
-	return (++str);
-}
-
 int	ft_printf(const char *str, ...)
 {
-	va_list		arg;
+	va_list	arg;
+	t_tracker	*count;
+	int		result;
 
+	count = malloc(sizeof(t_tracker));
+	count->pos = str;
 	va_start(arg, str);
-	while (*str)
+	while (count->pos[0] != '\0')
 	{
 		if (*str == '%' && *(str + 1) == 'c')
-			str = ft_write (va_arg(arg, int), str);
+			ft_write (va_arg(arg, int), count);
 		else if (*str == '%' && *(str + 1) == 's')
-			str = ft_write_string(va_arg(arg, char *), str);
+			ft_write_string(va_arg(arg, char *), count);
 		else if (*str == '%' && *(str + 1) == 'p')
-			str = ft_pt((long int)va_arg(arg, void *), "0123456789abcdef", str);
+			ft_pt((long int)va_arg(arg, void *), "0123456789abcdef", count);
 		else if (*str == '%' && *(str + 1) == 'd')
-			str = witoa((ssize_t)va_arg(arg, int), "0123456789", 10, str);
+			witoa((ssize_t)va_arg(arg, int), "0123456789", 10, count);
 		else if (*str == '%' && *(str + 1) == 'i')
-			str = witoa((ssize_t)va_arg(arg, int), "0123456789", 10, str);
+			witoa((ssize_t)va_arg(arg, int), "0123456789", 10, count);
 		else if (*str == '%' && *(str + 1) == 'u')
-			str = witoa((ssize_t)va_arg(arg, int), "0123456789", 10, str);
+			witoa((ssize_t)va_arg(arg, int), "0123456789", 10, count);
 		else if (*str == '%' && *(str + 1) == 'x')
-			str = witoa((ssize_t)va_arg(arg, int), "0123456789abcdef", 16, str);
+			witoa((ssize_t)va_arg(arg, int), "0123456789abcdef", 16, count);
 		else if (*str == '%' && *(str + 1) == 'X')
-			str = witoa((ssize_t)va_arg(arg, int), "0123456789ABCDEF", 16, str);
+			witoa((ssize_t)va_arg(arg, int), "0123456789ABCDEF", 16, count);
 		else if (*str == '%' && *(str + 1) == '%')
-			str = ft_write('%', str);
+			ft_write('%', count);
 		else
-			write (1, str, 1);
-		str++;
+			ft_write (count->pos[0], count);
+		count->pos++;
 	}
 	va_end(arg);
+	result = count->count;
+	free (count);
 	return (0);
 }
