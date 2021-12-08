@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 OBJECT = $(FILES:.c=.o)
-FILES = ft_printf.c ft_printf_utils.c
+FILES = ft_printf.c ft_printf_utils.c ft_printf_utils2.c
 CC = gcc
 CFLAGS = -Werror -Wall -Wextra
 AR = ar rcs

@@ -1,51 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/08 11:18:47 by simonwautel       #+#    #+#             */
+/*   Updated: 2021/12/08 11:24:11 by simonwautel      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"ft_printf.h"
 
-ssize_t	ft_strlen(char *str)
+void	ft_write_string(char *c, t_tracker *count)
 {
-	ssize_t	i;
+	int	len;
 
-	i = 0;
-	while (*str)
-	{
-		i++;
-		str++;
-	}
-	return (i);
-}
-
-void	ft_pt(long int pin, char *tab, t_tracker *count)
-{
-	int	index[9];
-	int	i;
-
-	ft_write('0', count);
-	ft_write('x', count);
-	i = 0;
-	while (i < 9)
-	{
-		index[i] = pin % 16;
-		pin = pin / 16;
-		i++;
-	}
-	while (i > 0)
-	{
-		i--;
-		ft_write(tab[index[i]], count);
-	}
+	len = ft_strlen(c);
+	write(1, c, len);
+	count->count += len;
 	count->pos++;
-}
-
-int	ft_len(size_t n, size_t b)
-{
-	int	l;
-
-	l = 1;
-	while (n >= b)
-	{
-		l++;
-		n = n / b;
-	}
-	return (l);
 }
 
 void	witoa(ssize_t n, char *str, size_t b, t_tracker *count)
@@ -80,14 +54,4 @@ void	ft_write(char c, t_tracker *count)
 {
 	write (1, &c, 1);
 	count->count++;
-}
-
-void	ft_write_string(char *c, t_tracker *count)
-{
-	int	len;
-
-	len = ft_strlen(c);
-	write(1, c, len);
-	count->count += len;
-	count->pos++;
 }
