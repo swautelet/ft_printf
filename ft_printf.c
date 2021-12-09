@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/08 11:24:56 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/09 08:11:36 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	ft_printf(const char *str, ...)
 	while (count->pos[0])
 	{
 		if (count->pos[0] == '%' && count->pos[1] == 'c')
+		{
 			ft_write (va_arg(arg, int), count);
+			count->pos++;
+		}
 		else if (count->pos[0] == '%' && count->pos[1] == 's')
 			ft_write_string(va_arg(arg, char *), count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'p')
@@ -40,7 +43,10 @@ int	ft_printf(const char *str, ...)
 		else if (count->pos[0] == '%' && count->pos[1] == 'X')
 			witoa((ssize_t)va_arg(arg, int), "0123456789ABCDEF", 16, count);
 		else if (count->pos[0] == '%' && count->pos[1] == '%')
+		{
 			ft_write('%', count);
+			count->pos++;
+		}
 		else
 			ft_write (count->pos[0], count);
 		count->pos++;

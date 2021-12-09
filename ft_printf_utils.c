@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:18:47 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/08 11:24:11 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/09 08:21:05 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@ void	ft_write_string(char *c, t_tracker *count)
 {
 	int	len;
 
-	len = ft_strlen(c);
-	write(1, c, len);
-	count->count += len;
-	count->pos++;
+	if (c == NULL)
+	{
+		write(1, "(null)", 6);
+		count->count += 6;
+		count->pos++;
+	}
+	else
+	{
+		len = ft_strlen(c);
+		write(1, c, len);
+		count->count += len;
+		count->pos++;
+	}
 }
 
 void	witoa(ssize_t n, char *str, size_t b, t_tracker *count)
