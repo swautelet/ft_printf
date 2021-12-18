@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:23:00 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/18 07:39:27 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/18 10:30:57 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,9 @@ ssize_t	ft_strlen(char *str)
 
 void	ft_pt(size_t pin, char *tab, t_tracker *count)
 {
-//	int	index[9];
-//	int	i;
-
 	ft_write('0', count);
 	ft_write('x', count);
-	u_witoa(pin, tab, 16, count);
-/*	i = 0;
-	while (i < 9)
-	{
-		index[i] = pin % 16;
-		pin = pin / 16;
-		i++;
-	}
-	while (i > 0)
-	{
-		i--;
-		ft_write(tab[index[i]], count);
-	}
-	count->pos++;*/
+	u_witoa(pin, tab, count);
 }
 
 int	ft_len(size_t n, size_t b)
@@ -59,4 +43,10 @@ int	ft_len(size_t n, size_t b)
 		n = n / b;
 	}
 	return (l);
+}
+
+void	ft_write_char(char c, t_tracker *count)
+{
+	ft_write(c, count);
+	count->pos++;
 }
