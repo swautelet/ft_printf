@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/09 08:11:36 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/18 07:52:26 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ int	ft_printf(const char *str, ...)
 		else if (count->pos[0] == '%' && count->pos[1] == 's')
 			ft_write_string(va_arg(arg, char *), count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'p')
-			ft_pt((long int)va_arg(arg, void *), "0123456789abcdef", count);
+			ft_pt((size_t)va_arg(arg, void *), "0123456789abcdef", count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'd')
 			witoa((ssize_t)va_arg(arg, int), "0123456789", 10, count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'i')
 			witoa((ssize_t)va_arg(arg, int), "0123456789", 10, count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'u')
-			witoa((ssize_t)va_arg(arg, int), "0123456789", 10, count);
+			u_witoa((size_t)va_arg(arg, unsigned int), "0123456789", 10, count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'x')
-			witoa((ssize_t)va_arg(arg, int), "0123456789abcdef", 16, count);
+			u_witoa((size_t)va_arg(arg, unsigned int), "0123456789abcdef", 16, count);
 		else if (count->pos[0] == '%' && count->pos[1] == 'X')
-			witoa((ssize_t)va_arg(arg, int), "0123456789ABCDEF", 16, count);
+			u_witoa((size_t)va_arg(arg, unsigned int), "0123456789ABCDEF", 16, count);
 		else if (count->pos[0] == '%' && count->pos[1] == '%')
 		{
 			ft_write('%', count);

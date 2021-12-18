@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:23:00 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/09 08:09:17 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/18 07:39:27 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ ssize_t	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_pt(long int pin, char *tab, t_tracker *count)
+void	ft_pt(size_t pin, char *tab, t_tracker *count)
 {
 //	int	index[9];
 //	int	i;
 
 	ft_write('0', count);
 	ft_write('x', count);
-	witoa(pin, tab, 16, count);
+	u_witoa(pin, tab, 16, count);
 /*	i = 0;
 	while (i < 9)
 	{

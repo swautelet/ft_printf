@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:18:47 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/09 08:21:05 by simonwautel      ###   ########.fr       */
+/*   Updated: 2021/12/18 07:38:43 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,21 @@ void	ft_write_string(char *c, t_tracker *count)
 	}
 }
 
-void	witoa(ssize_t n, char *str, size_t b, t_tracker *count)
+void	witoa(ssize_t a, char *str, size_t b, t_tracker *count)
 {
-	int	i;
-	int	*tab;
+	int		i;
+	int		*tab;
+	ssize_t	n;
 
 	i = 0;
-	if (n < 0)
+	if (a < 0)
 	{
-		n = -n;
+		n = -a;
 		ft_write('-', count);
 	}
+	else
+		n = a;
+//	printf("\n%zu\n", a);
 	tab = malloc(sizeof(int) * ft_len(n, b));
 	if (n == 0)
 		ft_write (*str, count);
@@ -49,6 +53,30 @@ void	witoa(ssize_t n, char *str, size_t b, t_tracker *count)
 	{
 		tab[i] = n % b;
 		n = n / b;
+		i++;
+	}
+	while (--i >= 0)
+	{
+		ft_write(str[tab[i]], count);
+	}
+	free (tab);
+	count->pos++;
+}
+
+void	u_witoa(size_t a, char *str, size_t b, t_tracker *count)
+{
+	int		i;
+	int		*tab;
+
+	i = 0;
+//	printf("\n%zu\n", a);
+	tab = malloc(sizeof(int) * ft_len(a, b));
+	if (a == 0)
+		ft_write (*str, count);
+	while (a > 0)
+	{
+		tab[i] = a % b;
+		a = a / b;
 		i++;
 	}
 	while (--i >= 0)
