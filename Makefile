@@ -6,6 +6,7 @@ CFLAGS = -Werror -Wall -Wextra
 AR = ar rcs
 HEADER = ft_printf.h 
 PROG = tester.c
+EXE = tester
 
 all :$(OBJECT)
 	$(AR) $(NAME) $?
@@ -27,7 +28,8 @@ save :
 	git push 
 
 test :
-	$(CC) $(CFLAGS) $(FILES) $(PROG) -o tester
-	./tester
+	$(CC) $(CFLAGS) $(FILES) $(PROG) -o $(EXE)
+	./$(EXE)
+	rm $(EXE)
 
 .PHONY: all clean fclean save bonus re test
