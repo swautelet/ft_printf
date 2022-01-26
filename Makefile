@@ -11,6 +11,8 @@ EXE = tester
 all :$(OBJECT)
 	$(AR) $(NAME) $?
 
+$(NAME) : all
+
 re : fclean all
 
 clean : 
