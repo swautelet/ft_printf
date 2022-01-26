@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 21:29:24 by simonwautel       #+#    #+#             */
-/*   Updated: 2022/01/26 17:58:58 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/01/26 18:15:17 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_printf(const char *str, ...)
 
 	count = malloc(sizeof(t_tracker));
 	if (!count)
-		return (NULL);
+		return (0);
 	count->pos = str;
 	count->count = 0;
 	va_start(arg, str);
