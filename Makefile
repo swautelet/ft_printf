@@ -27,7 +27,7 @@ fclean : clean
 save : 
 	git add $(FILES) $(HEADER) Makefile
 	git commit -m autosave
-	git push 
+	git push git@vogsphere-v2.s19.be:vogsphere/intra-uuid-443fc587-8920-4935-832c-e25e6b57e9a6-3985179-swautele
 
 test :
 	$(CC) $(CFLAGS) $(FILES) $(PROG) -o $(EXE)
