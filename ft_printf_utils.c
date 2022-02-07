@@ -6,7 +6,7 @@
 /*   By: simonwautelet <simonwautelet@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:18:47 by simonwautel       #+#    #+#             */
-/*   Updated: 2021/12/18 10:22:35 by simonwautel      ###   ########.fr       */
+/*   Updated: 2022/01/28 11:37:27 by simonwautel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,22 @@ void	witoa(ssize_t a, char *str, size_t b, t_tracker *count)
 {
 	int		i;
 	int		*tab;
-	ssize_t	n;
 
 	i = 0;
 	if (a < 0)
 	{
-		n = -a;
+		a = -a;
 		ft_write('-', count);
 	}
-	else
-		n = a;
-	tab = malloc(sizeof(int) * ft_len(n, b));
-	if (n == 0)
+	tab = malloc(sizeof(int) * ft_len(a, b));
+	if (!tab)
+		return ;
+	if (a == 0)
 		ft_write (*str, count);
-	while (n > 0)
+	while (a > 0)
 	{
-		tab[i] = n % b;
-		n = n / b;
-		i++;
+		tab[i++] = a % b;
+		a = a / b;
 	}
 	while (--i >= 0)
 		ft_write(str[tab[i]], count);
@@ -69,6 +67,8 @@ void	u_witoa(size_t a, char *str, t_tracker *count)
 	b = ft_strlen(str);
 	i = 0;
 	tab = malloc(sizeof(int) * ft_len(a, b));
+	if (!tab)
+		return ;
 	if (a == 0)
 		ft_write (*str, count);
 	while (a > 0)
